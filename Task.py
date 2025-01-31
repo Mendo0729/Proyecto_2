@@ -62,11 +62,102 @@ def anadir_tareas(Tareas, TASK_FILE):
         print("Tarea guardada exitosamente")
         break
 
-def eliminar_tareas():
-    print()
+def eliminar_tareas(Tareas, TASK_FILE):
+    lista_id = []
 
-def completar_tarea():
-    print()
+    if not Tareas:
+        print("No hay Tareas Registradas\n")
+        return  # Si no hay tareas, salimos de la función.
+
+    # Mostrar encabezado
+    print(f"{'ID':<5} {'TAREA':<40} {'FECHA':<20} {'ESTADO':<15}")
+    print("-" * 80)
+
+    # Mostrar tareas en proceso y guardar los IDs
+    for id, tarea_datos in Tareas.items():
+        lista_id.append(id)  # Guardamos todos los IDs
+        print(f"{id:<5} {tarea_datos['tarea']:<40} {tarea_datos['fecha']:<20} {tarea_datos['estado']:<15}")
+
+    if not lista_id:
+        print("No hay tareas en proceso para eliminar.")
+        return
+
+    # Bucle para seleccionar tarea a eliminar
+    while True:
+        try:
+            op = input(f"\n¿Cual tarea quieres eliminar? ({lista_id}) o 'salir' para salir de la funcion: ").strip().lower()
+
+            if op == 'salir':  # Si el usuario quiere salir de la función
+                print("Saliendo de la función...")
+                break
+
+            if op not in lista_id:
+                print("La opción elegida está fuera de rango.")
+                continue
+
+            # Confirmación para eliminar la tarea seleccionada
+            for id, tarea_datos in Tareas.items():
+                if str(id) == op:
+                    confirmacion = input(f"¿Estás seguro de que deseas eliminar la tarea '{tarea_datos['tarea']}'? (si/no): ").strip().lower()
+                    if confirmacion == 'si':
+                        del Tareas[op]  # Eliminar tarea
+                        guardar_datos(Tareas, TASK_FILE)  # Guardar los cambios
+                        print(f"Tarea '{tarea_datos['tarea']}' eliminada con éxito.")
+                    break  # Salir del bucle después de eliminar la tarea
+
+            break  # Salir del bucle después de completar la eliminación
+
+        except ValueError:
+            print("Error: Debes ingresar una opción válida.\n")
+            continue
+        except KeyboardInterrupt:
+            print("\nProceso interrumpido. Saliendo del programa...")
+            exit()
+
+
+def completar_tarea(Tareas, TASK_FILE):
+    lista_id = []
+    if not Tareas:
+        print(f"{'ID':<5} {'TAREA':<40} {'FECHA':<20} {'ESTADO':<15}")
+        print("-" * 80)
+        print()
+
+    print(f"{'ID':<5} {'TAREA':<40} {'FECHA':<20} {'ESTADO':<15}")
+    print("-" * 80)
+
+    # Mostrar tareas
+    for id, tarea_datos in Tareas.items():
+        if tarea_datos['estado'] == "en_proceso":
+            lista_id.append(id)
+
+        print(f"{id:<5} {tarea_datos['tarea']:<40} {tarea_datos['fecha']:<20} {tarea_datos['estado']:<15}")
+
+    #print(lista_id)
+
+    while True:
+        try:
+            op = input(f"\nCual tarea quieres completar({lista_id}) o 'salir' para salir del la funcion: ").strip().lower()
+            if op == 'salir':
+                print("Saliendo de la función...")
+                break
+
+            if not op in lista_id:
+                print("La opcion elegida esta fuera de rango")
+                continue
+
+            for id, tarea_datos in Tareas.items():
+                if str(id) == op:
+                    tarea_datos['estado'] = "completada"
+                    guardar_datos(Tareas, TASK_FILE)
+                    print(f"Tarea con ID {id} completada.")
+                    break
+
+        except ValueError:
+            print("Error: Debes ingresar una opcion valida.\n")
+            continue
+        except KeyboardInterrupt:
+            print("\nProceso interrumpido. Saliendo del programa...")
+            exit()
 
 def cargar_datos(archivo):
     try:
@@ -75,7 +166,6 @@ def cargar_datos(archivo):
             return json.loads(contenido) if contenido else {}
     except (FileNotFoundError, json.JSONDecodeError):
         return {}
-
 
 def guardar_datos(data, archivo):
     with open(archivo, 'w') as file:

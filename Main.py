@@ -33,9 +33,10 @@ while True:
         t.anadir_tareas(tareas, TASK_FILE)
         print()
     elif op == 3:
-        t.eliminar_tareas()
+        t.eliminar_tareas(tareas, TASK_FILE)
         print()
     elif op == 4:
+        t.completar_tarea(tareas, TASK_FILE)
         print()
     elif op == 5:
         t.guardar_datos(tareas, TASK_FILE)

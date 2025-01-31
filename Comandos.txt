@@ -1,0 +1,134 @@
+### 1. Configuración Inicial
+- git config --global user.name "Tu Nombre"
+  Establece tu nombre de usuario en Git.
+
+- git config --global user.email "tuemail@example.com"
+  Establece tu correo electrónico en Git.
+
+- git config --global core.editor "nano"
+  Establece el editor predeterminado para los mensajes de commit.
+
+### 2. Inicializar un Repositorio
+- git init
+  Crea un repositorio vacío en el directorio actual.
+
+- git clone <URL>
+  Clona un repositorio remoto en tu máquina local.
+
+### 3. Comandos para Ver Información
+- git status
+  Muestra el estado actual del repositorio (cambios no rastreados, cambios listos para hacer commit, etc.).
+
+- git log
+  Muestra el historial de commits.
+
+- git branch
+  Muestra las ramas locales en tu repositorio.
+
+- git branch -r
+  Muestra las ramas remotas en el repositorio.
+
+- git branch -a
+  Muestra todas las ramas locales y remotas.
+
+- git show <commit-hash>
+  Muestra los detalles de un commit específico.
+
+### 4. Trabajar con Ramas
+- git branch <nombre-rama>
+  Crea una nueva rama.
+
+- git checkout <nombre-rama>
+  Cambia a una rama existente.
+
+- git checkout -b <nombre-rama>
+  Crea una nueva rama y cambia a ella.
+
+- git merge <nombre-rama>
+  Fusiona una rama con la rama actual.
+
+- git branch -d <nombre-rama>
+  Elimina una rama local (solo si ya ha sido fusionada).
+
+- git branch -D <nombre-rama>
+  Elimina una rama local, incluso si no ha sido fusionada.
+
+### 5. Guardar Cambios
+- git add <archivo>
+  Agrega un archivo o cambios específicos al área de preparación (staging area).
+
+- git add .
+  Agrega todos los archivos modificados al área de preparación.
+
+- git commit -m "Mensaje del commit"
+  Realiza un commit con los cambios que están en el área de preparación, añadiendo un mensaje descriptivo.
+
+- git commit --amend
+  Modifica el último commit (útil para corregir el mensaje o agregar cambios olvidados).
+
+### 6. Sincronización con Repositorio Remoto
+- git remote add origin <URL>
+  Agrega un repositorio remoto.
+
+- git push
+  Sube tus cambios locales a la rama remota correspondiente.
+
+- git push origin <rama>
+  Sube la rama específica al repositorio remoto.
+
+- git pull
+  Descarga y fusiona los cambios desde el repositorio remoto a tu rama local.
+
+- git fetch
+  Descarga los cambios desde el repositorio remoto sin fusionarlos automáticamente.
+
+- git push -u origin <nombre-rama>
+  Sube una rama por primera vez al repositorio remoto y la configura como la rama predeterminada para hacer push.
+
+### 7. Resolución de Conflictos
+- git mergetool
+  Abre una herramienta de fusión para resolver conflictos entre ramas.
+
+- git reset <archivo>
+  Deshace los cambios en el área de preparación para un archivo específico (pero no borra los cambios del archivo).
+
+- git reset --hard
+  Resetea todos los cambios, incluyendo los commits no guardados, volviendo a un estado anterior del repositorio.
+
+### 8. Trabajo con Remoto
+- git remote -v
+  Muestra los repositorios remotos configurados para el proyecto.
+
+- git remote remove origin
+  Elimina un repositorio remoto de tu proyecto.
+
+### 9. Ver y Comparar Cambios
+- git diff
+  Muestra las diferencias entre los archivos modificados y los archivos en el repositorio.
+
+- git diff <archivo>
+  Muestra las diferencias de un archivo específico.
+
+### 10. Descartar Cambios
+- git checkout -- <archivo>
+  Descarta los cambios realizados en un archivo desde el último commit.
+
+- git reset <archivo>
+  Elimina un archivo del área de preparación, pero no deshace los cambios en el archivo.
+
+### 11. Deshacer Cambios
+- git revert <commit-hash>
+  Crea un nuevo commit que deshace los cambios de un commit anterior.
+
+- git reset --soft <commit-hash>
+  Resetea el repositorio a un commit específico, pero conserva los cambios en el área de preparación.
+
+### 12. Manejo de Etiquetas
+- git tag <etiqueta>
+  Crea una etiqueta (tag) para un commit específico.
+
+- git tag
+  Muestra todas las etiquetas en el repositorio.
+
+- git push origin <etiqueta>
+  Sube una etiqueta específica al repositorio remoto.
