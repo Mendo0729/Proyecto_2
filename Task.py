@@ -65,18 +65,12 @@ def anadir_tareas(Tareas, TASK_FILE):
 def eliminar_tareas(Tareas, TASK_FILE):
     lista_id = []
 
-    if not Tareas:
-        print("No hay Tareas Registradas\n")
-        return  # Si no hay tareas, salimos de la función.
-
-    # Mostrar encabezado
-    print(f"{'ID':<5} {'TAREA':<40} {'FECHA':<20} {'ESTADO':<15}")
-    print("-" * 80)
+    mostrar_tareas(Tareas)
 
     # Mostrar tareas en proceso y guardar los IDs
     for id, tarea_datos in Tareas.items():
         lista_id.append(id)  # Guardamos todos los IDs
-        print(f"{id:<5} {tarea_datos['tarea']:<40} {tarea_datos['fecha']:<20} {tarea_datos['estado']:<15}")
+        #print(f"{id:<5} {tarea_datos['tarea']:<40} {tarea_datos['fecha']:<20} {tarea_datos['estado']:<15}")
 
     if not lista_id:
         print("No hay tareas en proceso para eliminar.")
@@ -114,23 +108,15 @@ def eliminar_tareas(Tareas, TASK_FILE):
             print("\nProceso interrumpido. Saliendo del programa...")
             exit()
 
-
 def completar_tarea(Tareas, TASK_FILE):
     lista_id = []
-    if not Tareas:
-        print(f"{'ID':<5} {'TAREA':<40} {'FECHA':<20} {'ESTADO':<15}")
-        print("-" * 80)
-        print()
-
-    print(f"{'ID':<5} {'TAREA':<40} {'FECHA':<20} {'ESTADO':<15}")
-    print("-" * 80)
-
+    mostrar_tareas(Tareas)
     # Mostrar tareas
     for id, tarea_datos in Tareas.items():
         if tarea_datos['estado'] == "en_proceso":
             lista_id.append(id)
 
-        print(f"{id:<5} {tarea_datos['tarea']:<40} {tarea_datos['fecha']:<20} {tarea_datos['estado']:<15}")
+        #print(f"{id:<5} {tarea_datos['tarea']:<40} {tarea_datos['fecha']:<20} {tarea_datos['estado']:<15}")
 
     #print(lista_id)
 
