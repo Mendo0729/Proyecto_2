@@ -70,7 +70,7 @@ def eliminar_tareas(Tareas, TASK_FILE):
     # Mostrar tareas en proceso y guardar los IDs
     for id, tarea_datos in Tareas.items():
         lista_id.append(id)  # Guardamos todos los IDs
-        print(f"{id:<5} {tarea_datos['tarea']:<40} {tarea_datos['fecha']:<20} {tarea_datos['estado']:<15}")
+        #print(f"{id:<5} {tarea_datos['tarea']:<40} {tarea_datos['fecha']:<20} {tarea_datos['estado']:<15}")
 
     if not lista_id:
         print("No hay tareas en proceso para eliminar.")
@@ -116,7 +116,7 @@ def completar_tarea(Tareas, TASK_FILE):
         if tarea_datos['estado'] == "en_proceso":
             lista_id.append(id)
 
-        print(f"{id:<5} {tarea_datos['tarea']:<40} {tarea_datos['fecha']:<20} {tarea_datos['estado']:<15}")
+        #print(f"{id:<5} {tarea_datos['tarea']:<40} {tarea_datos['fecha']:<20} {tarea_datos['estado']:<15}")
 
     #print(lista_id)
 
